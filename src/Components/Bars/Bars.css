@@ -1,0 +1,33 @@
+.Bars {
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+ul.BarList {
+    display: flex;
+    align-items: end;
+    gap: 5px;
+    height: 90%;
+    width: 90%;
+}
+
+li.Bar {
+    flex-grow: 1;
+    background-color: #d4dbfe;
+    display: inline-block;
+    width: fit-content;
+}
+
+li.Bar.Selected {
+    background-color: #FF3B12;
+}
+
+@media (max-width: 1000px) {
+    ul.BarList {
+        gap: 1px;
+    }
+}
