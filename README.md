@@ -3,7 +3,7 @@
 #### Description:
 A visualisation tool for commonly used sorting algorithms. 
 These include Quick Sort, Merge Sort, Heap Sort, Bubble Sort and Selection Sort.
-Check it put <a href="https://sorting-visualiser.onrender.com/">here</a>
+<a href="https://sorting-visualiser.onrender.com/">Try it yourself over here!</a>
 
 You can generate new random Arrays on the top left and change the array size and sorting speed via the select.
 While a sort is in progress, it will become orange and you are unable to select another until the current one finished.
