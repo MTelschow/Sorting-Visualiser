@@ -1,6 +1,8 @@
+import mergeSort from "./mergeSort";
+
 function getBubbleSortAnimations(array) {
 	const animations = [];
-	const arrayCopy = copyArray(array);
+	const arrayCopy = array.slice();
 
 	let swapHappend = true;
 	let correct = 0;
@@ -21,7 +23,7 @@ function getBubbleSortAnimations(array) {
 
 function getSelectionSortAnimations(array) {
 	const animations = [];
-	const arrayCopy = copyArray(array);
+	const arrayCopy = array.slice();
 
 	for (let i = 0; i < arrayCopy.length - 1; i++) {
 		let indexLowest = i;
@@ -41,7 +43,7 @@ function getSelectionSortAnimations(array) {
 
 function getQuickSortAnimations(array) {
 	const animations = [];
-	const arrayCopy = copyArray(array);
+	const arrayCopy = array.slice();
 
 	getQuickSortAnimationsHelper(arrayCopy, 0, arrayCopy.length - 1, animations);
 
@@ -61,7 +63,6 @@ function getQuickSortAnimationsHelper(array, startIdx, endIdx, animations) {
 			animations.push([startIdx, leftPointer]);
 		}
 
-
 		if (pivot <= array[rightPointer]) rightPointer--;
 		else if (pivot >= array[leftPointer]) leftPointer++;
 		else {
@@ -78,18 +79,19 @@ function getQuickSortAnimationsHelper(array, startIdx, endIdx, animations) {
 
 function getMergeSortAnimations(array) {
 	const animations = [];
-	const arrayCopy = copyArray(array);
+	const arrayCopy = array.slice();
+
+	mergeSort(arrayCopy, animations);
 
 	return animations;
 }
 
 function getHeapSortAnimations(array) {
 	const animations = [];
-	const arrayCopy = copyArray(array);
+	const arrayCopy = array.slice();
 
 	return animations;
 }
-
 
 function swapWithAnimations(array, FirstIndex, SecondIndex, animations) {
 	animations.push(['s', [FirstIndex, SecondIndex]]);
@@ -100,14 +102,6 @@ function swap(array, FirstIndex, SecondIndex = FirstIndex + 1) {
 	const temp = array[FirstIndex];
 	array[FirstIndex] = array[SecondIndex];
 	array[SecondIndex] = temp;
-}
-
-function copyArray(array) {
-	const arrayCopy = [];
-	for (let element of array) {
-		arrayCopy.push(element);
-	}
-	return arrayCopy;
 }
 
 export default {

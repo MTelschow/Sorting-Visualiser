@@ -82,13 +82,9 @@ function App() {
 	const playAnimations = (animations, sort) => {
 		setActiveAlgo(sort);
 		const timeouts = [];
-		if (sort === 'bubble' || sort === 'selection' || sort === 'quick') {
+		if (sort === 'bubble' || sort === 'selection' || sort === 'quick' || sort === 'merge') {
 			for (let i = 0; i < animations.length; i++) {
-				if (animations[i][0] !== 's') {
-					timeouts.push(
-						setTimeout(() => setSelected(animations[i]), i * speed)
-					);
-				} else {
+				if (animations[i][0] === 's') {
 					timeouts.push(
 						setTimeout(() => {
 							swap(array, animations[i][1][0], animations[i][1][1]);
@@ -96,6 +92,16 @@ function App() {
 						}, i * speed)
 					);
 				}
+				else if (animations[i][0] === 'r') {
+					timeouts.push(setTimeout(() => {
+						array[animations[i][1][0]] = animations[i][1][1];
+					}, i * speed))
+				}
+				else {
+					timeouts.push(
+						setTimeout(() => setSelected(animations[i]), i * speed)
+					);
+				} 
 			}
 		}
 
