@@ -10,6 +10,7 @@ export default function FunctionBar({
 	mergeSort,
 	heapSort,
 	setArraySize,
+	activeAlgo,
 }) {
 	const toggleAlgos = () => {};
 
@@ -23,19 +24,19 @@ export default function FunctionBar({
 				<SizeSelect setArraySize={setArraySize} />
 				<div className='Algos'>
 					<ul className='Algos'>
-						<li className='Bubble Sort' onClick={() => bubbleSort(array)}>
+						<li className={activeAlgo === 'bubble' ? 'Active' : (activeAlgo === '' ? 'Sort' : 'Unactive' )} onClick={() => bubbleSort(array)}>
 							Bubble Sort
 						</li>
-						<li className='Selection Sort' onClick={() => selectionSort(array)}>
+						<li className={activeAlgo === 'selection' ? 'Active' : (activeAlgo === '' ? 'Sort' : 'Unactive' )} onClick={() => selectionSort(array)}>
 							Selection Sort
 						</li>
-						<li className='Quick Sort' onClick={() => quickSort(array)}>
+						<li className={activeAlgo === 'quick' ? 'Active' : (activeAlgo === '' ? 'Sort' : 'Unactive' )} onClick={() => quickSort(array)}>
 							Quick Sort
 						</li>
-						<li className='Merge Sort' onClick={() => mergeSort(array)}>
+						<li className={activeAlgo === 'merge' ? 'Active' : (activeAlgo === '' ? 'Sort' : 'Unactive' )} onClick={() => mergeSort(array)}>
 							Merge Sort
 						</li>
-						<li className='Heap Sort' onClick={() => heapSort(array)}>
+						<li className={activeAlgo === 'heap' ? 'Active' : (activeAlgo === '' ? 'Sort' : 'Unactive' )} onClick={() => heapSort(array)}>
 							Heap Sort
 						</li>
 					</ul>

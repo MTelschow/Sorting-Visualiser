@@ -15,7 +15,12 @@ ul.BarList {
     width: 90%;
 }
 
+li {
+    cursor: default;
+}
+
 li.Bar {
+    cursor: auto;
     flex-grow: 1;
     background-color: #d4dbfe;
     display: inline-block;

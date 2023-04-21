@@ -63,7 +63,7 @@ function getHeapSortAnimations(array) {
 }
 
 function swap(array, FirstIndex, SecondIndex = FirstIndex + 1) {
-	let temp = array[FirstIndex];
+	const temp = array[FirstIndex];
 	array[FirstIndex] = array[SecondIndex];
 	array[SecondIndex] = temp;
 }
