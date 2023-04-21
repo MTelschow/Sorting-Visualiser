@@ -31,6 +31,10 @@ li.Bar.Selected {
     background-color: #FF3B12;
 }
 
+li.Bar.Green{
+    background-color: #31D36D;
+}
+
 @media (max-width: 1000px) {
     ul.BarList {
         gap: 1px;
