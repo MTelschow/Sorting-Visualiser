@@ -9,13 +9,10 @@ function getBubbleSortAnimations(array) {
 		for (let i = 0; i < arrayCopy.length - correct - 1; i++) {
 			animations.push([i, i + 1]);
 			if (arrayCopy[i] > arrayCopy[i + 1]) {
-				animations.push([i + 1, i]);
+				animations.push(['s', [i + 1, i]]);
 				swapHappend = true;
 				swap(arrayCopy, i);
-			} else {
-				animations.push([i, i + 1]);
 			}
-			animations.push([i, i + 1]);
 		}
 		correct++;
 	}
@@ -29,12 +26,13 @@ function getSelectionSortAnimations(array) {
 	for (let i = 0; i < arrayCopy.length - 1; i++) {
 		let indexLowest = i;
 		for (let j = i + 1; j < arrayCopy.length; j++) {
-			animations.push([j, indexLowest], [j, indexLowest], [j, indexLowest]);
+			animations.push([j, indexLowest]);
 			if (arrayCopy[j] < arrayCopy[indexLowest]) {
 				indexLowest = j;
 			}
 		}
-		if (i !== indexLowest) animations.push([i, indexLowest], [indexLowest, i], [i, indexLowest]);
+		animations.push([indexLowest, i]);
+		if (i !== indexLowest) animations.push(['s', [indexLowest, i]]);
 		swap(arrayCopy, i, indexLowest);
 	}
 
@@ -45,7 +43,37 @@ function getQuickSortAnimations(array) {
 	const animations = [];
 	const arrayCopy = copyArray(array);
 
+	getQuickSortAnimationsHelper(arrayCopy, 0, arrayCopy.length - 1, animations);
+
 	return animations;
+}
+
+function getQuickSortAnimationsHelper(array, startIdx, endIdx, animations) {
+	if (startIdx >= endIdx) return;
+
+	const pivot = array[startIdx];
+	let leftPointer = startIdx + 1;
+	let rightPointer = endIdx;
+
+	while (leftPointer <= rightPointer) {
+		animations.push([startIdx, rightPointer]);
+		if (!(pivot <= array[rightPointer])) {
+			animations.push([startIdx, leftPointer]);
+		}
+
+
+		if (pivot <= array[rightPointer]) rightPointer--;
+		else if (pivot >= array[leftPointer]) leftPointer++;
+		else {
+			swapWithAnimations(array, leftPointer, rightPointer, animations);
+			leftPointer++;
+			rightPointer--;
+		}
+	}
+
+	swapWithAnimations(array, startIdx, rightPointer, animations);
+	getQuickSortAnimationsHelper(array, startIdx, rightPointer - 1, animations);
+	getQuickSortAnimationsHelper(array, rightPointer + 1, endIdx, animations);
 }
 
 function getMergeSortAnimations(array) {
@@ -60,6 +88,12 @@ function getHeapSortAnimations(array) {
 	const arrayCopy = copyArray(array);
 
 	return animations;
+}
+
+
+function swapWithAnimations(array, FirstIndex, SecondIndex, animations) {
+	animations.push(['s', [FirstIndex, SecondIndex]]);
+	swap(array, FirstIndex, SecondIndex);
 }
 
 function swap(array, FirstIndex, SecondIndex = FirstIndex + 1) {

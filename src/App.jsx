@@ -28,14 +28,24 @@ function App() {
 		for (let i = 0; i < arraySize; i++) {
 			tempArray.push(1);
 		}
-		const randomArray = tempArray.map(() => Math.ceil(Math.random() * 299) + 1);
+		const randomArray = tempArray.map((item, i) => Math.ceil(Math.random() * 299) + 1);
 		setArray(randomArray);
+
+		// clearAnimations();
+		// const height = 300 / arraySize;
+		// const tempArray = [];
+		// for (let i = 0; i < arraySize; i++) {
+		// 	tempArray.push(1);
+		// }
+		// const randomArray = tempArray.map((item, i) => (i + 1) * height);
+		// randomArray.sort((a, b) => 0.5 - Math.random());
+		// setArray(randomArray);
 	};
 
 	const changeSpeed = () => {
-		if (arraySize >= 100) setSpeed(1);
-		else if (arraySize <= 10) setSpeed(200);
-		else setSpeed(10);
+		if (arraySize >= 100) setSpeed(5);
+		else if (arraySize <= 10) setSpeed(500);
+		else setSpeed(20);
 	};
 
 	const bubbleSort = (array) => {
@@ -53,6 +63,7 @@ function App() {
 	const quickSort = (array) => {
 		if (currentTimeouts.length !== 0) return;
 		const animations = getQuickSortAnimations(array);
+		console.log(animations);
 		playAnimations(animations, 'quick');
 	};
 
@@ -69,19 +80,19 @@ function App() {
 	};
 
 	const playAnimations = (animations, sort) => {
-    setActiveAlgo(sort);
+		setActiveAlgo(sort);
 		const timeouts = [];
-		if (sort === 'bubble' || sort === 'selection') {
+		if (sort === 'bubble' || sort === 'selection' || sort === 'quick') {
 			for (let i = 0; i < animations.length; i++) {
-				if (i % 3 === 0) {
+				if (animations[i][0] !== 's') {
 					timeouts.push(
 						setTimeout(() => setSelected(animations[i]), i * speed)
 					);
-				} else if (i % 3 === 2 && animations[i][0] !== animations[i - 1][0]) {
+				} else {
 					timeouts.push(
 						setTimeout(() => {
-							swap(array, animations[i][0], animations[i][1]);
-							setSelected(animations[i]);
+							swap(array, animations[i][1][0], animations[i][1][1]);
+							setSelected(animations[i][1]);
 						}, i * speed)
 					);
 				}
@@ -92,7 +103,7 @@ function App() {
 			setTimeout(() => {
 				setSelected([]);
 				setCurrentTimouts([]);
-        setActiveAlgo('');
+				setActiveAlgo('');
 			}, animations.length * speed)
 		);
 		setCurrentTimouts(timeouts);
@@ -104,7 +115,7 @@ function App() {
 		}
 		setSelected([]);
 		setCurrentTimouts([]);
-    setActiveAlgo('');
+		setActiveAlgo('');
 	};
 
 	useEffect(() => {
