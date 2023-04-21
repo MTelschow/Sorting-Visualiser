@@ -40,9 +40,13 @@ p:hover {
 }
 
 li.Sort:hover {
-	color: #31D36D;
+	color: #FF8D12;
 }
 
 li.Active {
 	color: #FF8D12;
+}
+
+li.Finished {
+	color: #31D36D;
 }

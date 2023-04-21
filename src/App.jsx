@@ -86,7 +86,7 @@ function App() {
 	};
 
 	const playAnimations = (animations, sort) => {
-		setActiveAlgo(sort);
+		setActiveAlgo([sort, 0]);
 		const timeouts = [];
 
 		for (let i = 0; i < animations.length; i++) {
@@ -108,14 +108,10 @@ function App() {
 			}
 		}
 
-		const solved = [];
-		for (let i = 0; i < arraySize; i++) {
-			solved.push(i);
-		}
-
 		timeouts.push(
 			setTimeout(() => {
 				setSelected([]);
+				setActiveAlgo([sort, 1]);
 				for (let i = 0; i < arraySize; i++) {
 					timeouts.push(
 						setTimeout(() => setSelected([]), (2000 / arraySize) * i)
