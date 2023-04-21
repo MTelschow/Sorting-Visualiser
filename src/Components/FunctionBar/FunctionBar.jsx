@@ -24,12 +24,6 @@ export default function FunctionBar({
 				<SizeSelect setArraySize={setArraySize} />
 				<div className='Algos'>
 					<ul className='Algos'>
-						<li className={activeAlgo[0] === 'bubble' ? (activeAlgo[1] === 0 ?'Active' : 'Finished') : (activeAlgo === '' ? 'Sort' : 'Unactive' )} onClick={() => bubbleSort(array)}>
-							Bubble Sort
-						</li>
-						<li className={activeAlgo[0] === 'selection' ? (activeAlgo[1] === 0 ?'Active' : 'Finished') : (activeAlgo === '' ? 'Sort' : 'Unactive' )} onClick={() => selectionSort(array)}>
-							Selection Sort
-						</li>
 						<li className={activeAlgo[0] === 'quick' ? (activeAlgo[1] === 0 ?'Active' : 'Finished') : (activeAlgo === '' ? 'Sort' : 'Unactive' )} onClick={() => quickSort(array)}>
 							Quick Sort
 						</li>
@@ -38,6 +32,12 @@ export default function FunctionBar({
 						</li>
 						<li className={activeAlgo[0] === 'heap' ? (activeAlgo[1] === 0 ?'Active' : 'Finished') : (activeAlgo === '' ? 'Sort' : 'Unactive' )} onClick={() => heapSort(array)}>
 							Heap Sort
+						</li>
+						<li className={activeAlgo[0] === 'bubble' ? (activeAlgo[1] === 0 ?'Active' : 'Finished') : (activeAlgo === '' ? 'Sort' : 'Unactive' )} onClick={() => bubbleSort(array)}>
+							Bubble Sort
+						</li>
+						<li className={activeAlgo[0] === 'selection' ? (activeAlgo[1] === 0 ?'Active' : 'Finished') : (activeAlgo === '' ? 'Sort' : 'Unactive' )} onClick={() => selectionSort(array)}>
+							Selection Sort
 						</li>
 					</ul>
 				</div>
