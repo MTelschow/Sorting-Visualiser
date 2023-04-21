@@ -10,7 +10,7 @@
 ul.BarList {
     display: flex;
     align-items: end;
-    gap: 5px;
+    gap: 1px;
     height: 90%;
     width: 90%;
 }
