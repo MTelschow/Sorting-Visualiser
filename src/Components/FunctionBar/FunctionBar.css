@@ -1,19 +1,33 @@
-.FunctionBar {
+.Header {
 	width: 100%;
-	height: 10%;
 	background-color: #6275DC;
+	row-gap: 0;
+}
+
+h1 {
+	margin: 0px;
+	text-align: center;
+}
+
+.FunctionBar {
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
-	gap: 40px;
+	column-gap: 40px;
+	flex-wrap: wrap;
 }
 
-
+select {
+	background-color: #6275DC;	
+	
+}
 
 ul.Algos {
 	display: flex;
 	justify-content: space-between;
 	gap: 20px;
+	text-align: center;
+
 }
 p,
 li.Sort,
@@ -21,12 +35,11 @@ li.Sort,
 	cursor: pointer;
 	transition: color 0.3s ease-in-out, 0.3s ease-in-out;
 }
-p:hover,
-li.Sort:hover {
+p:hover {
 	color: #233bba;
 }
 
-.Start:hover {
+li.Sort:hover {
 	color: #31D36D;
 }
 

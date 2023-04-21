@@ -1,0 +1,9 @@
+  select {
+    background-color: aliceblue;
+    color: #6275DC;
+    border: transparent;
+    display: inline-block;
+    font: inherit;
+    line-height: 1.5em;
+  
+  }

@@ -16,24 +16,49 @@ const {
 function App() {
 	const [array, setArray] = useState([]);
 	const [arraySize, setArraySize] = useState(50);
-	const [speed, setSpeed] = useState(10);
+	const [speed, setSpeed] = useState(1);
 
 	const [selected, setSelected] = useState([]);
 
 	const randomizeArray = () => {
-		const randomArray = new Array(arraySize)
-			.fill(0)
+    const tempArray = [];
+    for (let i = 0; i < arraySize; i++) {
+      tempArray.push(1);
+    }
+		const randomArray = tempArray
 			.map(() => Math.ceil(Math.random() * 299) + 1);
 		setArray(randomArray);
 	};
-	const selectionSort = (array) => {
-		const animations = getSelectionSortAnimations(array);
-		playAnimations(animations, 'selection');
+
+	const changeSpeed = () => {
+    if (arraySize >= 100) setSpeed(1);
+    else if (arraySize <= 10) setSpeed(200);
+    else setSpeed(10);
 	};
 
 	const bubbleSort = (array) => {
 		const animations = getBubbleSortAnimations(array);
 		playAnimations(animations, 'bubble');
+	};
+
+	const selectionSort = (array) => {
+		const animations = getSelectionSortAnimations(array);
+		playAnimations(animations, 'selection');
+	};
+
+	const quickSort = (array) => {
+		const animations = getQuickSortAnimations(array);
+		playAnimations(animations, 'quick');
+	};
+
+	const mergeSort = (array) => {
+		const animations = getMergeSortAnimations(array);
+		playAnimations(animations, 'merge');
+	};
+
+	const heapSort = (array) => {
+		const animations = getHeapSortAnimations(array);
+		playAnimations(animations, 'heap');
 	};
 
 	const playAnimations = (animations, sort) => {
@@ -53,7 +78,10 @@ function App() {
 		setTimeout(() => setSelected([]), animations.length * speed);
 	};
 
-	useEffect(randomizeArray, []);
+	useEffect(() => {
+    randomizeArray();
+    changeSpeed();
+  }, [arraySize]);
 
 	return (
 		<div className='App'>
@@ -61,7 +89,11 @@ function App() {
 				generateNewArray={randomizeArray}
 				bubbleSort={bubbleSort}
 				selectionSort={selectionSort}
+				quickSort={quickSort}
+				mergeSort={mergeSort}
+				heapSort={heapSort}
 				array={array}
+				setArraySize={setArraySize}
 			/>
 			<Bars array={array} selected={selected} />
 		</div>
