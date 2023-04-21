@@ -19,27 +19,33 @@ function App() {
 	const [arraySize, setArraySize] = useState(50);
 	const [speed, setSpeed] = useState(1);
 	const [selected, setSelected] = useState([]);
+	const [green, setGreen] = useState([]);
 
 	const [activeAlgo, setActiveAlgo] = useState('');
 
 	const randomizeArray = () => {
-		clearAnimations();
-		const tempArray = [];
-		for (let i = 0; i < arraySize; i++) {
-			tempArray.push(1);
+		const random = false;
+		if (random) {
+			clearAnimations();
+			const tempArray = [];
+			for (let i = 0; i < arraySize; i++) {
+				tempArray.push(1);
+			}
+			const randomArray = tempArray.map(
+				(item, i) => Math.ceil(Math.random() * 299) + 1
+			);
+			setArray(randomArray);
+		} else {
+			clearAnimations();
+			const height = 300 / arraySize;
+			const tempArray = [];
+			for (let i = 0; i < arraySize; i++) {
+				tempArray.push(1);
+			}
+			const randomArray = tempArray.map((item, i) => (i + 1) * height);
+			randomArray.sort((a, b) => 0.5 - Math.random());
+			setArray(randomArray);
 		}
-		const randomArray = tempArray.map((item, i) => Math.ceil(Math.random() * 299) + 1);
-		setArray(randomArray);
-
-		// clearAnimations();
-		// const height = 300 / arraySize;
-		// const tempArray = [];
-		// for (let i = 0; i < arraySize; i++) {
-		// 	tempArray.push(1);
-		// }
-		// const randomArray = tempArray.map((item, i) => (i + 1) * height);
-		// randomArray.sort((a, b) => 0.5 - Math.random());
-		// setArray(randomArray);
 	};
 
 	const changeSpeed = () => {
@@ -82,7 +88,12 @@ function App() {
 	const playAnimations = (animations, sort) => {
 		setActiveAlgo(sort);
 		const timeouts = [];
-		if (sort === 'bubble' || sort === 'selection' || sort === 'quick' || sort === 'merge') {
+		if (
+			sort === 'bubble' ||
+			sort === 'selection' ||
+			sort === 'quick' ||
+			sort === 'merge'
+		) {
 			for (let i = 0; i < animations.length; i++) {
 				if (animations[i][0] === 's') {
 					timeouts.push(
@@ -91,25 +102,52 @@ function App() {
 							setSelected(animations[i][1]);
 						}, i * speed)
 					);
-				}
-				else if (animations[i][0] === 'r') {
-					timeouts.push(setTimeout(() => {
-						array[animations[i][1][0]] = animations[i][1][1];
-					}, i * speed))
-				}
-				else {
+				} else if (animations[i][0] === 'r') {
+					timeouts.push(
+						setTimeout(() => {
+							array[animations[i][1][0]] = animations[i][1][1];
+						}, i * speed)
+					);
+				} else {
 					timeouts.push(
 						setTimeout(() => setSelected(animations[i]), i * speed)
 					);
-				} 
+				}
 			}
+		}
+
+		const solved = [];
+		for (let i = 0; i < arraySize; i++) {
+			solved.push(i);
 		}
 
 		timeouts.push(
 			setTimeout(() => {
 				setSelected([]);
-				setCurrentTimouts([]);
-				setActiveAlgo('');
+
+				const solved = [];
+
+				for (let i = 0; i < arraySize; i++) {
+					timeouts.push(
+						setTimeout(() => setSelected([]), (2000 / arraySize) * i)
+					);
+					timeouts.push(
+						setTimeout(() => {
+							solved.push(i);
+							green.push(i);
+							setGreen(green);
+							console.log(green);
+						}, (2000 / arraySize) * i)
+					);
+				}
+
+				timeouts.push(
+					setTimeout(() => {
+						setGreen([]);
+						setCurrentTimouts([]);
+						setActiveAlgo('');
+					}, 2500)
+				);
 			}, animations.length * speed)
 		);
 		setCurrentTimouts(timeouts);
@@ -142,7 +180,7 @@ function App() {
 				setArraySize={setArraySize}
 				activeAlgo={activeAlgo}
 			/>
-			<Bars array={array} selected={selected} />
+			<Bars array={array} selected={selected} green={green} />
 		</div>
 	);
 }
