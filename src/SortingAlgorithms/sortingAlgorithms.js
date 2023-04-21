@@ -1,4 +1,6 @@
+import heapSort from "./heapSort";
 import mergeSort from "./mergeSort";
+
 
 function getBubbleSortAnimations(array) {
 	const animations = [];
@@ -89,6 +91,8 @@ function getMergeSortAnimations(array) {
 function getHeapSortAnimations(array) {
 	const animations = [];
 	const arrayCopy = array.slice();
+
+	heapSort(arrayCopy, animations);
 
 	return animations;
 }
