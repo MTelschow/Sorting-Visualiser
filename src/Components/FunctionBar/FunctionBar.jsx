@@ -20,7 +20,7 @@ export default function FunctionBar({
 			<h1>Sorting Visualiser</h1>
 			<div className='FunctionBar'>
 				<div className='GenerateNewArray'>
-					<p onClick={generateNewArray}>Generate New Array</p>
+					<p onClick={generateNewArray}>Shuffle Array</p>
 				</div>
 				<SizeSelect setArraySize={setArraySize} />
 				<div className='Algos'>
