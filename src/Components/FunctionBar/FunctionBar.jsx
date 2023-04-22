@@ -110,7 +110,7 @@ export default function FunctionBar({
 								}
 								onClick={() => insertionSort(array)}
 							>
-								Selection Sort
+								Insertion Sort
 							</li>
 						</div>
 					</ul>
