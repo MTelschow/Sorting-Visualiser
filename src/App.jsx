@@ -149,6 +149,7 @@ function App() {
 		setSelected([]);
 		setCurrentTimouts([]);
 		setActiveAlgo('');
+		setGreen([]);
 	};
 
 	useEffect(() => {
