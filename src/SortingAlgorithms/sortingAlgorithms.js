@@ -1,6 +1,5 @@
-import heapSort from "./heapSort";
-import mergeSort from "./mergeSort";
-
+import heapSort from './heapSort';
+import mergeSort from './mergeSort';
 
 function getBubbleSortAnimations(array) {
 	const animations = [];
@@ -38,6 +37,24 @@ function getSelectionSortAnimations(array) {
 		animations.push([indexLowest, i]);
 		if (i !== indexLowest) animations.push(['s', [indexLowest, i]]);
 		swap(arrayCopy, i, indexLowest);
+	}
+
+	return animations;
+}
+
+function getInsertionSortAnimations(originArray) {
+	const animations = [];
+	const array = originArray.slice();
+
+	for (let i = 0; i < array.length; i++) {
+		let currentIdx = i;
+
+		while(currentIdx > 0) {
+			if (array[currentIdx] < array[currentIdx - 1] && noteComparison(currentIdx, currentIdx - 1, animations)) {
+				swapWithAnimations(array, currentIdx, currentIdx - 1, animations);
+				currentIdx--;
+			} else break;
+		}
 	}
 
 	return animations;
@@ -97,6 +114,11 @@ function getHeapSortAnimations(array) {
 	return animations;
 }
 
+function noteComparison(firstIdx, secondIdx, animations) {
+	animations.push([firstIdx, secondIdx]);
+	return true;
+}
+
 function swapWithAnimations(array, FirstIndex, SecondIndex, animations) {
 	animations.push(['s', [FirstIndex, SecondIndex]]);
 	swap(array, FirstIndex, SecondIndex);
@@ -111,6 +133,7 @@ function swap(array, FirstIndex, SecondIndex = FirstIndex + 1) {
 export default {
 	getBubbleSortAnimations,
 	getSelectionSortAnimations,
+	getInsertionSortAnimations,
 	getQuickSortAnimations,
 	getMergeSortAnimations,
 	getHeapSortAnimations,

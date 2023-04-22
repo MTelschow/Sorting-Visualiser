@@ -6,6 +6,7 @@ export default function FunctionBar({
 	array,
 	bubbleSort,
 	selectionSort,
+	insertionSort,
 	quickSort,
 	mergeSort,
 	heapSort,
@@ -24,21 +25,94 @@ export default function FunctionBar({
 				<SizeSelect setArraySize={setArraySize} />
 				<div className='Algos'>
 					<ul className='Algos'>
-						<li className={activeAlgo[0] === 'quick' ? (activeAlgo[1] === 0 ?'Active' : 'Finished') : (activeAlgo === '' ? 'Sort' : 'Unactive' )} onClick={() => quickSort(array)}>
-							Quick Sort
-						</li>
-						<li className={activeAlgo[0] === 'merge' ? (activeAlgo[1] === 0 ?'Active' : 'Finished') : (activeAlgo === '' ? 'Sort' : 'Unactive' )} onClick={() => mergeSort(array)}>
-							Merge Sort
-						</li>
-						<li className={activeAlgo[0] === 'heap' ? (activeAlgo[1] === 0 ?'Active' : 'Finished') : (activeAlgo === '' ? 'Sort' : 'Unactive' )} onClick={() => heapSort(array)}>
-							Heap Sort
-						</li>
-						<li className={activeAlgo[0] === 'bubble' ? (activeAlgo[1] === 0 ?'Active' : 'Finished') : (activeAlgo === '' ? 'Sort' : 'Unactive' )} onClick={() => bubbleSort(array)}>
-							Bubble Sort
-						</li>
-						<li className={activeAlgo[0] === 'selection' ? (activeAlgo[1] === 0 ?'Active' : 'Finished') : (activeAlgo === '' ? 'Sort' : 'Unactive' )} onClick={() => selectionSort(array)}>
-							Selection Sort
-						</li>
+						<div className='nlogn'>
+							<li
+								className={
+									activeAlgo[0] === 'quick'
+										? activeAlgo[1] === 0
+											? 'Active'
+											: 'Finished'
+										: activeAlgo === ''
+										? 'Sort'
+										: 'Unactive'
+								}
+								onClick={() => quickSort(array)}
+							>
+								Quick Sort
+							</li>
+							<li
+								className={
+									activeAlgo[0] === 'merge'
+										? activeAlgo[1] === 0
+											? 'Active'
+											: 'Finished'
+										: activeAlgo === ''
+										? 'Sort'
+										: 'Unactive'
+								}
+								onClick={() => mergeSort(array)}
+							>
+								Merge Sort
+							</li>
+							<li
+								className={
+									activeAlgo[0] === 'heap'
+										? activeAlgo[1] === 0
+											? 'Active'
+											: 'Finished'
+										: activeAlgo === ''
+										? 'Sort'
+										: 'Unactive'
+								}
+								onClick={() => heapSort(array)}
+							>
+								Heap Sort
+							</li>
+						</div>
+						<div className='n2'>
+							<li
+								className={
+									activeAlgo[0] === 'bubble'
+										? activeAlgo[1] === 0
+											? 'Active'
+											: 'Finished'
+										: activeAlgo === ''
+										? 'Sort'
+										: 'Unactive'
+								}
+								onClick={() => bubbleSort(array)}
+							>
+								Bubble Sort
+							</li>
+							<li
+								className={
+									activeAlgo[0] === 'selection'
+										? activeAlgo[1] === 0
+											? 'Active'
+											: 'Finished'
+										: activeAlgo === ''
+										? 'Sort'
+										: 'Unactive'
+								}
+								onClick={() => selectionSort(array)}
+							>
+								Selection Sort
+							</li>
+							<li
+								className={
+									activeAlgo[0] === 'insertion'
+										? activeAlgo[1] === 0
+											? 'Active'
+											: 'Finished'
+										: activeAlgo === ''
+										? 'Sort'
+										: 'Unactive'
+								}
+								onClick={() => insertionSort(array)}
+							>
+								Selection Sort
+							</li>
+						</div>
 					</ul>
 				</div>
 			</div>

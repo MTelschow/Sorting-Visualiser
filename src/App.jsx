@@ -7,6 +7,7 @@ import algos from './SortingAlgorithms/sortingAlgorithms';
 const {
 	getBubbleSortAnimations,
 	getSelectionSortAnimations,
+	getInsertionSortAnimations,
 	getQuickSortAnimations,
 	getMergeSortAnimations,
 	getHeapSortAnimations,
@@ -65,6 +66,12 @@ function App() {
 		const animations = getSelectionSortAnimations(array);
 		playAnimations(animations, 'selection');
 	};
+
+	const insertionSort = (array) => {
+		if (currentTimeouts.length !== 0) return;
+		const animations = getInsertionSortAnimations(array);
+		playAnimations(animations, 'insertion')
+	}
 
 	const quickSort = (array) => {
 		if (currentTimeouts.length !== 0) return;
@@ -155,6 +162,7 @@ function App() {
 				generateNewArray={randomizeArray}
 				bubbleSort={bubbleSort}
 				selectionSort={selectionSort}
+				insertionSort={insertionSort}
 				quickSort={quickSort}
 				mergeSort={mergeSort}
 				heapSort={heapSort}
