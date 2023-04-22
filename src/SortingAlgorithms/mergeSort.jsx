@@ -36,8 +36,8 @@ function doMerge(
 
 	while (leftPointer <= middleIdx && rightPointer <= endIdx) {
 		if (
-			auxiliaryArray[leftPointer] < auxiliaryArray[rightPointer] &&
-			noteComparison(leftPointer, rightPointer, animations)
+			noteComparison(leftPointer, rightPointer, animations) &&
+			auxiliaryArray[leftPointer] < auxiliaryArray[rightPointer]
 		) {
 			animations.push(['r', [currentPos, auxiliaryArray[leftPointer]]]);
 			mainArray[currentPos++] = auxiliaryArray[leftPointer++];
@@ -47,12 +47,12 @@ function doMerge(
 		}
 	}
 	while (leftPointer <= middleIdx) {
-        animations.push([leftPointer]);
+		animations.push([leftPointer]);
 		animations.push(['r', [currentPos, auxiliaryArray[leftPointer]]]);
 		mainArray[currentPos++] = auxiliaryArray[leftPointer++];
 	}
 	while (rightPointer <= endIdx) {
-        animations.push([rightPointer]);
+		animations.push([rightPointer]);
 		animations.push(['r', [currentPos, auxiliaryArray[rightPointer]]]);
 		mainArray[currentPos++] = auxiliaryArray[rightPointer++];
 	}

@@ -49,8 +49,11 @@ function getInsertionSortAnimations(originArray) {
 	for (let i = 0; i < array.length; i++) {
 		let currentIdx = i;
 
-		while(currentIdx > 0) {
-			if (array[currentIdx] < array[currentIdx - 1] && noteComparison(currentIdx, currentIdx - 1, animations)) {
+		while (currentIdx > 0) {
+			if (
+				noteComparison(currentIdx, currentIdx - 1, animations) &&
+				array[currentIdx] < array[currentIdx - 1]
+			) {
 				swapWithAnimations(array, currentIdx, currentIdx - 1, animations);
 				currentIdx--;
 			} else break;
