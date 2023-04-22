@@ -69,7 +69,6 @@ function App() {
 	const quickSort = (array) => {
 		if (currentTimeouts.length !== 0) return;
 		const animations = getQuickSortAnimations(array);
-		console.log(animations);
 		playAnimations(animations, 'quick');
 	};
 
@@ -120,7 +119,6 @@ function App() {
 						setTimeout(() => {
 							green.push(i);
 							setGreen(green);
-							console.log(green);
 						}, (2000 / arraySize) * i)
 					);
 				}
