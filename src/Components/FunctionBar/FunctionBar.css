@@ -1,6 +1,6 @@
 .Header {
 	width: 100%;
-	background-color: #6275DC;
+	background-color: #6275dc;
 	row-gap: 0;
 }
 
@@ -18,16 +18,18 @@ h1 {
 }
 
 select {
-	background-color: #6275DC;	
-	
+	background-color: #8797EA;
 }
 
-ul.Algos {
+ul.Algos,
+.n2,
+.nlogn {
+	margin-top: 0px;
 	display: flex;
-	justify-content: space-between;
-	gap: 20px;
+	justify-content: space-around;
+	gap: 5px 20px;
 	text-align: center;
-
+	flex-wrap: wrap;
 }
 p,
 li.Sort,
@@ -35,18 +37,29 @@ li.Sort,
 	cursor: pointer;
 	transition: color 0.3s ease-in-out, 0.3s ease-in-out;
 }
-p:hover {
-	color: #233bba;
-}
-
-li.Sort:hover {
-	color: #FF8D12;
-}
 
 li.Active {
-	color: #FF8D12;
+	color: #ff8d12;
 }
 
 li.Finished {
-	color: #31D36D;
+	color: #31d36d;
+}
+
+@media (max-width: 1000px) {
+	h1, label, p, select {
+		color: #233BBA;
+	}
+
+}
+
+
+@media (min-width: 1000px) {
+	li.Sort:hover {
+		color: #ff8d12;
+	}
+
+	p:hover {
+		color: #233bba;
+	}
 }
